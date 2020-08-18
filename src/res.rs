@@ -1,21 +1,22 @@
 use crate::pack::Manifest;
-use std::path::Path;
-use std::fs;
+extern crate serde_json;
 use identicon_rs::Identicon;
+use self::serde_json::Value;
+use serde::{Deserialize, Serialize};
+use serde_json::Result;
+use std::fs;
 use std::io::Write;
 
 pub struct ResourcePack {
     manifest: Manifest,
-    path: &'static Path
 }
 
 impl ResourcePack {
-    pub fn new(name: String, description: String, path: &'static Path) -> Self{
+    pub fn new(name: String, description: String) -> Self{
         Self {
             manifest: Manifest::new(
                 name,description,"resource".to_string()
             ),
-            path
         }
     }
 
@@ -41,3 +42,42 @@ impl ResourcePack {
         });
     }
 }
+
+
+//Particle
+#[derive(Serialize, Deserialize)]
+pub struct Particle {
+    format_version: String,
+    particle_effect: ParticleDescription,
+    components: serde_json::value::Value,
+}
+
+#[derive(Serialize, Deserialize)]
+struct ParticleDescription {
+    identifier: String,
+    basic_render_parameters: BasicRenderParameters,
+}
+
+#[derive(Serialize, Deserialize)]
+struct BasicRenderParameters {
+    material: String,
+    texture: String, // Path
+}
+
+impl Particle {
+    pub fn new(identifier: String, material: String, texture: String, components: Value) -> Self {
+        Self {
+            format_version: "1.10.0".to_string(),
+            particle_effect: ParticleDescription {
+                identifier,
+                basic_render_parameters: BasicRenderParameters { material, texture },
+            },
+            components,
+        }
+    }
+
+    pub fn get_json(&self) -> Result<String> {
+        serde_json::to_string(self)
+    }
+}
+
