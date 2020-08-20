@@ -3,10 +3,11 @@ use self::serde_json::Value;
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
 use uuid::Uuid;
-
+use crate::res::ResourcePack;
+use crate::beh::BehaviorPack;
 //Manifest
 #[derive(Serialize, Deserialize)]
-pub struct Header {
+struct Header {
     description: String,
     name: String,
     uuid: String,
@@ -55,4 +56,27 @@ impl Manifest {
         self.header.name.clone()
     }
 
+}
+
+pub struct McPack {
+    resource: ResourcePack,
+    behavior: BehaviorPack,
+}
+
+impl McPack {
+    pub fn new(name: &str, description: &str) -> Self{
+        Self {
+            resource: ResourcePack::new(name.to_string(),description.to_string()),
+            behavior: BehaviorPack::new(name.to_string(),description.to_string()),
+        }
+    }
+
+    pub fn init_all(&self){
+        self.resource.init();
+        self.behavior.init();
+    }
+
+    pub fn new_particle(&self, identifier: &str, material: &str, texture: &str, v:Value){
+        self.resource.add_particle(identifier, material, texture, v)
+    }
 }

@@ -35,11 +35,11 @@ impl ResourcePack {
         }
     }
 
-    pub fn add_particle(&self, file_name: String){
+    pub fn add_particle(&self, identifier: &str, material: &str, texture: &str, v:Value){
         let name = &self.manifest.name();
-        fs::File::create(&format!("{}/resource_pack/particles/{}", name, file_name)).map_err(|e| {
-            panic!("Unable to add particle: {}", e);
-        });
+        let mut data = fs::File::create(&format!("{}/resource_pack/particles/{}.json", name, identifier)).expect("Unable to add particle");
+        let particle = Particle::new(identifier.to_string(), material.to_string(), format!("{}/resource_pack/textures/frames/{}", name, texture), v);
+        data.write_all(&particle.get_json().unwrap().as_ref());
     }
 }
 

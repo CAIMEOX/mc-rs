@@ -1,34 +1,11 @@
-use crate::res::ResourcePack;
-use crate::beh::BehaviorPack;
-use uuid::adapter::compact::deserialize;
-
-mod beh;
-mod pack;
-mod res;
-
-struct McPack {
-    resource: ResourcePack,
-    behavior: BehaviorPack,
-}
-
-impl McPack {
-    fn new(name: &str, description: &str) -> Self{
-        Self {
-            resource: ResourcePack::new(name.to_string(),description.to_string()),
-            behavior: BehaviorPack::new(name.to_string(),description.to_string()),
-        }
-    }
-
-    fn init_all(self){
-        self.resource.init();
-        self.behavior.init();
-    }
-
-
-}
+pub mod beh;
+pub mod res;
+pub mod pack;
 
 #[cfg(test)]
 mod tests {
+
+    use crate::pack::McPack;
     use crate::pack::{Manifest};
     use crate::res::Particle;
     #[test]
@@ -61,11 +38,15 @@ mod tests {
 
     use crate::res::ResourcePack;
     use crate::beh::BehaviorPack;
-    use crate::McPack;
-
+    use serde_json::json;
     #[test]
     fn new_pack() {
         let w = McPack::new("test", "DEV");
         w.init_all();
+        w.new_particle("id", "material", "./", json!(
+        {
+        "a":"b"
+        }
+        ))
     }
 }
