@@ -14,19 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="649edce4-4042-42fd-bd59-94492d5c6ba3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/behavior_pack/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/behavior_pack/pack_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/resource_pack/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/resource_pack/pack_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mc-rs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mc-rs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/beh.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/beh.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pack.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/pack.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/res.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

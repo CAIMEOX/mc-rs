@@ -8,7 +8,7 @@ mod tests {
     use crate::pack::McPack;
     use crate::pack::{Manifest};
     use crate::res::Particle;
-    #[test]
+    // #[test]
     fn manifest() {
         let manifest = Manifest::new(
             "test".to_string(),
@@ -18,7 +18,7 @@ mod tests {
         println!("Manifest: {}", manifest.get_json().unwrap());
     }
 
-    #[test]
+    // #[test]
     fn particle() {
         let p = Particle::new(
             "caimeo".to_string(),
@@ -39,14 +39,21 @@ mod tests {
     use crate::res::ResourcePack;
     use crate::beh::BehaviorPack;
     use serde_json::json;
+
     #[test]
     fn new_pack() {
-        let w = McPack::new("test", "DEV");
+        let mut w = McPack::new("caimeo-test", "DEV");
         w.init_all();
         w.new_particle("id", "material", "./", json!(
         {
         "a":"b"
         }
-        ))
+        ));
+        w.behavior.add_animation("anime.test",vec![
+        "/say Ok".to_string()
+        ], true, 1);
+        w.behavior.add_entity("caimeo",true, true, true);
+        w.behavior.add_script("caimeo", "test", "anime.test");
+        w.behavior.exit();
     }
 }

@@ -59,8 +59,8 @@ impl Manifest {
 }
 
 pub struct McPack {
-    resource: ResourcePack,
-    behavior: BehaviorPack,
+    pub resource: ResourcePack,
+    pub behavior: BehaviorPack,
 }
 
 impl McPack {
